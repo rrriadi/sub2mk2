@@ -1,0 +1,31 @@
+<script>
+	function getFromDB()
+	{
+		console.log('test get')
+	var dbPromise = idb.open("mydatabase", 5 , function(upgradeDb)
+{
+	if(!upgradeDb.objectStoreNames.contains("match"))
+	{
+		upgradeDb.createObjectStore("match", {keyPath: 'id'});
+		
+
+	}
+	console.log('getting I')
+
+});
+ dbPromise.then(function(db)
+      {
+      	console.log('getting II')
+        var tx = db.transaction('match', 'readwrite');
+        var store = tx.objectStore('match');
+
+        return store.getAll();
+      })
+ .then (function(items)
+ {
+ 	console.log('fav:', items);
+ })
+	}
+	
+
+</script> <!--fav.html-->

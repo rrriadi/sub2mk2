@@ -1,0 +1,16 @@
+{
+    "name": "RadarBola",
+    "short_name": "RB",
+    "description": "Dicoding Submission 02",
+    "start_url": "/index.html",
+    "display": "standalone",
+    "background_color": "#1a237e",
+    "theme_color": "#1a237e",
+    "icons": [
+        {
+            "src": "img/bg.jfif",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
