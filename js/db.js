@@ -26,17 +26,6 @@ function response(response)
 		let standHTML = ""
 		console.log(data.standings)
 
-		var dbPromise = idb.open("mydatabase", 5, function(upgradeDb)
-		{
-			if(!upgradeDb.objectStoreNames.contains("match"))
-				{
-					upgradeDb.createObjectStore("match", {keyPath: 'id'});
-				}
-			else if(!upgradeDb.objectStoreNames.contains("standing"))
-				{
-					upgradeDb.createObjectStore("standing", {keyPath: 'id'})
-				} 
-		})
 		dbPromise.then(function(db)
 		{
 			var tx = db.transaction('match', 'readonly')
