@@ -14,6 +14,7 @@ function fetchMatch(match_url)
         },
         method: 'GET'
     })
+    console.log("Mengambil data dari "+ match_url)
     .then(response)
 }
 
@@ -27,6 +28,8 @@ function fetchStand(stand_url)
         },
         method: 'GET'
     })
-    .then(response)
+        console.log("Mengambil data dari "+ stand_url)
+    .then (response(response))
 
 }
+
