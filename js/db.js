@@ -10,7 +10,7 @@ var dbPromise = idb.open("mydatabase", 5 , function(upgradeDb)
 	} 
 });
 
-function(response)
+function response(response)
 {
 	if(response.status !=200)
 	{
@@ -25,6 +25,23 @@ function(response)
 		let matchHTML = ""
 		let standHTML = ""
 		console.log(data.standings)
-		
+
+		var dbPromise = idb.open("mydatabase", 5, function(upgradeDb)
+		{
+			if(!upgradeDb.objectStoreNames.contains("match"))
+				{
+					upgradeDb.createObjectStore("match", {keyPath: 'id'});
+				}
+			else if(!upgradeDb.objectStoreNames.contains("standing"))
+				{
+					upgradeDb.createObjectStore("standing", {keyPath: 'id'})
+				} 
+		})
+		dbPromise.then(function(db)
+		{
+			var tx = db.transaction('match', 'readonly')
+			var store = tx.objectStore('match')
+			return store.getAll()
+		})
 	})
 }
