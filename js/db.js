@@ -36,3 +36,22 @@ function response(response)
 		})
 	})
 }
+
+function saveTeam(team){
+	const data = team.getAttribute('data-team');
+	console.log(data);
+	// Lakukan simpan ke DB
+	store.add(team)
+
+	M.toast({'html':'Data berhasil disimpan'})
+}
+
+function saveStanding(standing){
+	const data = standing.getAttribute('data-standing')
+	console.log(data);
+	store.add(standing)
+}
+
+function getFavMatches(){
+	// Kode ambil data
+}

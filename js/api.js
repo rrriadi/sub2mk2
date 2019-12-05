@@ -1,35 +1,63 @@
 const base_url = "https://api.football-data.org/"
+const token = "c9c3c5e000b64bcbb7515e47b74e48cf"
 let saved = []
 
 const match_url = (base_url + "v2/matches")
 const stand_url = (base_url + "v2/standings")
 
-function fetchMatch(match_url)
+// Bikin FetchApi dulu untuk semua requeat ke API
+function fetchApi(url)
 {
-    return fetch(match_url, 
+    return fetch(url, 
     {
         headers: 
         {
-            'X-Auth-Token': 'c9c3c5e000b64bcbb7515e47b74e48cf'
-        },
-        method: 'GET'
+            'X-Auth-Token': token
+        }
     })
-    console.log("Mengambil data dari "+ match_url)
-    .then(response)
+    .then(status)
+    .then(json)
 }
 
-function fetchStand(stand_url)
+// Bikin juga untuk cek status response
+function status(response){
+	 if (response.status !== 200) {
+    console.log("Error : " + response.status);
+    // Method reject() akan membuat blok catch terpanggil
+    return Promise.reject(new Error(response.statusText));
+  } else {
+    // Mengubah suatu objek menjadi Promise agar bisa "di-then-kan"
+    return Promise.resolve(response);
+  }
+}
+
+function json(response){
+	return response.json()
+}
+
+// Blok kode untuk meng-handle kesalahan di blok catch
+function error(error) {
+  // Parameter error berasal dari Promise.reject()
+  console.log("Error : " + error);
+}
+
+
+// Request ke API
+// getMatch()
+function getMatches(){
+	return fetchApi(match_url)
+	.then(function(data){
+		return data;
+	});
+}
+
+
+function getStandings(stand_url)
 {
-	return fetch(stand_url, 
-    {
-        headers: 
-        {
-            'X-Auth-Token': 'c9c3c5e000b64bcbb7515e47b74e48cf'
-        },
-        method: 'GET'
-    })
-        console.log("Mengambil data dari "+ stand_url)
-    .then (response(response))
+	return fetchApi(stand_url)
+	.then(function(data){
+		return data;
+	});
 
 }
 
