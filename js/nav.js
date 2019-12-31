@@ -46,9 +46,15 @@ function loadPage(page)
     if (this.readyState == 4) 
     {
       var content = document.querySelector("#body-content");
+
 	      if (this.status == 200) 
 	      {
 	        content.innerHTML = xhttp.responseText;
+
+        if(page == 'home') loadMatches();
+        if(page == 'standings') loadStandings();
+        //if(page == 'fav') loadFav();
+
 	      } 
 	      else if (this.status == 404) 
 	      {

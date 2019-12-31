@@ -2,8 +2,8 @@ const base_url = "https://api.football-data.org/"
 const token = "c9c3c5e000b64bcbb7515e47b74e48cf"
 let saved = []
 
-const match_url = (base_url + "v2/matches")
-const stand_url = (base_url + "v2/standings")
+const match_url = (base_url + "v2/matches?dateFrom=2019-12-24&dateTo=2019-12-31")
+const stand_url = (base_url + "v2/competitions/BL1/standings")
 
 // Bikin FetchApi dulu untuk semua requeat ke API
 function fetchApi(url)
@@ -52,7 +52,7 @@ function getMatches(){
 }
 
 
-function getStandings(stand_url)
+function getStandings()
 {
 	return fetchApi(stand_url)
 	.then(function(data){

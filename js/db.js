@@ -41,7 +41,9 @@ function saveTeam(team){
 	const data = team.getAttribute('data-team');
 	console.log(data);
 	// Lakukan simpan ke DB
-	store.add(team)
+	var tx = db.transaction('match', 'readonly')
+	var store = tx.objectStore('match')
+	return store.add(team)
 
 	M.toast({'html':'Data berhasil disimpan'})
 }
@@ -49,9 +51,47 @@ function saveTeam(team){
 function saveStanding(standing){
 	const data = standing.getAttribute('data-standing')
 	console.log(data);
+	var tx = db.transaction('standings', 'readonly')
+	var store = tx.objectStore('standing')
 	store.add(standing)
 }
 
-function getFavMatches(){
-	// Kode ambil data
+function saveToFav(el)
+{
+	dbPromise.then(function(db){
+		let match = JSON.parse(el.getAttribute('data-match'));
+		let tx = db.transaction('match', 'readwrite');
+		let store = tx.objectStore('match');
+		M.toast({html: "Favorited"})
+		return store.put(match);
+	}).catch(function(err){
+		console.log(err)
+	})
+}
+
+function removeFav(el)
+{
+	dbPromise.then(function(db){
+		let match = JSON.parse(el.getAttribute('data-match'));
+		let tx = db.transaction('match', 'readwrite');
+		let store = tx.objectStore('match');
+		M.toast({html: "Removed from Favorites"})
+		return store.delete(match);
+	}).catch(function(err)
+	{
+		console.log(err)
+	})
+}
+
+function getFav()
+{
+	dbPromise.then(function(db){
+		let match = JSON.parse(el.getAttribute('data-match'));
+		let tx = db.transaction('match', 'readwrite');
+		let store = tx.objectStore('match');
+		M.toast({html: "Favorited"})
+		return store.get(match);
+	}).catch(function(err){
+		console.log(err)
+	})
 }
