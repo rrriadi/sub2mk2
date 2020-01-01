@@ -85,13 +85,13 @@ function removeFav(el)
 
 function getFav()
 {
-	dbPromise.then(function(db){
+	dbPromise.then(function(db)
+	{
 		let match = JSON.parse(el.getAttribute('data-match'));
 		let tx = db.transaction('match', 'readwrite');
 		let store = tx.objectStore('match');
-		M.toast({html: "Favorited"})
-		return store.get(match);
+		return store.getAll(match)
 	}).catch(function(err){
-		console.log(err)
-	})
+		console.log(err)})
+	console.log("Data Favorite Diambil")
 }

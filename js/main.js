@@ -37,24 +37,23 @@ function loadStandings(){
             console.log(standing.table)
 
             // Awal tabel <table> header dst, <row><th> dst`
-            `<table>
+            standHTML += `<table>
                 <thead>
                     <tr>
                         <th>Position</th>
                         <th>Team Name</th>
                     </tr>
-                </thead>`
+                </thead>
+                <tbody>`
             standing.table.forEach(function(data){
                 // Disini <row><td> dst atau bisa tambahin tbody
-                standHTML += `<tbody>
-                                    <row>
-                                        <td>${data.position} - ${data.team.name}</td>
-                                    </row>
-                            </tbody>
-                            <br/>`;
+                standHTML += `<tr>
+                                        <td>${data.position}</td>
+                                        <td>${data.team.name}</td>
+                                </tr>`;
             })
             // Akhir table </table>
-            `</table>`
+            standHTML += `</tbody></table><br/>`
 
         });
 
@@ -96,7 +95,7 @@ function loadFav()
 
           `
           })
-        document.getElementById("matchtab").innerHTML = matchHTML;
+        document.getElementById("favtab").innerHTML = matchHTML;
         console.log(data);
     })
     }
