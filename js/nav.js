@@ -53,7 +53,7 @@ function loadPage(page)
 
         if(page == 'home') loadMatches();
         if(page == 'standings') loadStandings();
-        //if(page == 'fav') loadFav();
+        if(page == 'fav') loadFav();
 
 	      } 
 	      else if (this.status == 404) 
