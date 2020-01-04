@@ -63,6 +63,7 @@ function saveToFav(el)
 		let tx = db.transaction('match', 'readwrite');
 		let store = tx.objectStore('match');
 		M.toast({html: "Favorited"})
+		loadMatches();
 		return store.put(match);
 	}).catch(function(err){
 		console.log(err)
@@ -76,23 +77,23 @@ function removeFav(el)
 		let tx = db.transaction('match', 'readwrite');
 		let store = tx.objectStore('match');
 		M.toast({html: "Removed from Favorites"})
-		return store.delete(match);
+		loadFav();
+		return store.delete(match.id);
 	}).catch(function(err)
 	{
 		console.log(err)
 	})
 }
 
-function getFav(el)
+function getFav()
 {
-	dbPromise.then(function(db)
+	return dbPromise.then(function(db)
 	{
 		console.log("Mengambil Data Favorite")
-		let match = JSON.parse(el.getAttribute('data-match'));
-		let tx = db.transaction('match', 'readwrite');
+		//let match = JSON.parse(el.getAttribute('data-match'));
+		let tx = db.transaction('match', 'readonly');
 		let store = tx.objectStore('match');
-		return store.getAll(match)
-		console.log(el)
+		return store.getAll();
 	}).catch(function(err){
 		console.log(err)})
 }

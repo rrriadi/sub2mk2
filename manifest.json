@@ -8,7 +8,7 @@
     "theme_color": "#1a237e",
     "icons": [
         {
-            "src": "img/bg.jfif",
+            "src": "/icon.png",
             "sizes": "512x512",
             "type": "image/png"
         }

@@ -80,7 +80,7 @@ function loadFav()
         getFav()
         .then(function(data){
         matchHTML = '';
-        data.matches.forEach(function(match){
+        data.forEach(function(match){
         let matchdate = new Date(match.utcDate);
          matchHTML += `
             <tr>
@@ -90,13 +90,12 @@ function loadFav()
             <td>${match.season.startDate}&nbsp;s/d&nbsp;${match.season.endDate}</td>
             <td>${match.homeTeam.name}</td>
             <td>${match.awayTeam.name}</td>
-            <td><a class="waves-effect waves-light btn red" id="fav" onclick= "removeFavFav(this)" data-match='${JSON.stringify(match)}' >Remove</a></td>
+            <td><a class="waves-effect waves-light btn red" id="fav" onclick= "removeFav(this)" data-match='${JSON.stringify(match)}' >Remove</a></td>
             </tr>
 
           `
           })
         document.getElementById("favtab").innerHTML = matchHTML;
-        console.log(data);
     })
     }
 

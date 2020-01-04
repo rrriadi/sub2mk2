@@ -35,15 +35,12 @@ function json(response){
 	return response.json()
 }
 
-// Blok kode untuk meng-handle kesalahan di blok catch
+
 function error(error) {
-  // Parameter error berasal dari Promise.reject()
   console.log("Error : " + error);
 }
 
 
-// Request ke API
-// getMatch()
 function getMatches(){
 	return fetchApi(match_url)
 	.then(function(data){
