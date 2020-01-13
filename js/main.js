@@ -37,7 +37,7 @@ function loadStandings(){
             console.log(standing.table)
 
             // Awal tabel <table> header dst, <row><th> dst`
-            standHTML += `<table>
+            standHTML += `<table class="responsive-table striped">
                 <thead>
                     <tr>
                         <th>Position</th>
